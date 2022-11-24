@@ -12,7 +12,12 @@ public class ShellSort {
     }
 
     static void sort(int[] arr){
-        for (int gap = arr.length/2; gap >0 ; gap/=2) {
+        int h = 1;
+        while(h <= arr.length/3){
+            h = h*3 + 1;
+        }
+
+        for (int gap = h; gap >0 ; gap = (gap-1)/3) {
             //以间隔为4的新数组，使用插入排序排序
             for (int j = gap; j < arr.length; j++) {
                 //从指定位置往前比较大小，小的往前插

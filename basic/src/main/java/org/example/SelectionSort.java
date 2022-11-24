@@ -19,7 +19,7 @@ public class SelectionSort {
                 }
             }
             swap(arr, i, minPos);
-            System.out.println("经过第 " + i + "次循环之后，数组的内容：");
+            System.out.print("经过第 " + i + "次循环之后，数组的内容：");
             print(arr);
         }
         print(arr);
@@ -35,5 +35,6 @@ public class SelectionSort {
         for (int i : arr) {
             System.out.print(i + " ");
         }
+        System.out.println();
     }
 }

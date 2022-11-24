@@ -1,5 +1,10 @@
 package org.example;
 
+/**
+ * 选择排序
+ * 每次遍历整个数组，找出最小值，放到数组前面的位置
+ * 遍历顺序：从左往右
+ */
 public class SelectionSort {
 
     public static void main(String[] args){

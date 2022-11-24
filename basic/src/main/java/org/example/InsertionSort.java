@@ -13,10 +13,12 @@ public class InsertionSort {
     }
 
     static void sort(int[] arr){
-        //从指定位置往前比较大小，小的往前插
-        for (int i = 1; i > 0; i--) {
-            if(arr[i] < arr[i-1]){
-                swap(arr, i, i-1);
+        for (int j = 0; j < arr.length; j++) {
+            //从指定位置往前比较大小，小的往前插
+            for (int i = j; i > 0; i--) {
+                if(arr[i] < arr[i-1]){
+                    swap(arr, i, i-1);
+                }
             }
         }
     }

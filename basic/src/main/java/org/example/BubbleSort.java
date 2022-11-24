@@ -14,11 +14,15 @@ public class BubbleSort {
 
     static void sort(int[] arr){
         for (int j = arr.length -1 ; j > 0; j--) {
-            //两两比较，找到最大值，并放到数组最后面
-            for (int i = 0; i < j; i++) {
-                if(arr[i] > arr[i+1]){
-                    swap(arr,i,i+1);
-                }
+            findMax(arr, j);
+        }
+    }
+
+    static void findMax(int[] arr, int n){
+        //两两比较，找到最大值，并放到数组最后面
+        for (int i = 0; i < n; i++) {
+            if(arr[i] > arr[i+1]){
+                swap(arr,i,i+1);
             }
         }
     }

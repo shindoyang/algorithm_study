@@ -15,22 +15,32 @@ public class MergeSort {
     }
 
     static void sort(int[] arr){
-        merge(arr);
+        //1,4,7,8, 3,6,9
+//        merge(arr,0,4, arr.length);
+        // 4,7,8, 3,6
+        merge(arr,1,4, 6);
     }
 
-    static void merge(int[] arr){
+    /**
+     *
+     * @param arr 排序的原始数组
+     * @param leftPtr 左指针，指向左数组起始位置
+     * @param rightPtr 右指针，指向右数组起始位置
+     * @param rightBound 右边界，指向数右数组的结束位置
+     */
+    static void merge(int[] arr, int leftPtr, int rightPtr, int rightBound){
         int mid = arr.length / 2;
-        int[] tmp = new int[arr.length];
+        int[] tmp = new int[rightBound - leftPtr];
         
         //前半数据的第一个位置
-        int i = 0;
+        int i = leftPtr;
         //后半数组的第一个位置
-        int j = mid +1;
+        int j = rightPtr;
         //tmp 数组的第一个位置
         int k = 0;
 
         //两个数组都没越界
-        while(i <= mid && mid < arr.length){
+        while(i <= mid && j < rightBound){
             if(arr[i] <= arr[j]){
                 tmp[k] = arr[i];
                 i++;
@@ -43,8 +53,12 @@ public class MergeSort {
         }
 
         //把最后剩下的部分拷贝到新数组上
-        while(i <= mid) {tmp[k++] = arr[i++];}
-        while(j < arr.length){tmp[k++] = arr[j++];}
+        while(i <= mid) {
+            tmp[k++] = arr[i++];
+        }
+        while(j < rightBound){
+            tmp[k++] = arr[j++];
+        }
 
         print(tmp);
 

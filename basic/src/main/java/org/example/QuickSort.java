@@ -1,5 +1,7 @@
 package org.example;
 
+import javax.sound.midi.SoundbankResource;
+
 /**
  * 快速排序
  * 从数组两边同时向中间推进，找到左边比轴数大，右边比轴数小，两个位置的数直接交换。
@@ -7,16 +9,20 @@ package org.example;
 public class QuickSort {
 
     public static void main(String[] args) {
+        int[] arr = {4,6};
+//        int[] arr = {7,3,2,6,8,1,9,5,4,10};
 //        int[] arr = {7,3,2,8,1,9,5,4,6};
 //        int[] arr = {7,3,2,8,1,9,5,4,6,10};
-        int[] arr = {7,3,2,8,1,9,5,4,6,0};
+//        int[] arr = {7,3,2,8,1,9,5,4,6,0};
         sort(arr, 0, arr.length -1);
         print(arr);
     }
 
     static void sort(int[] arr, int leftBound, int rightBound){
-        if(leftBound >= rightBound) return;
-        partition(arr, leftBound, rightBound);
+        if(leftBound >= rightBound) {return;}
+        int mid = partition(arr, leftBound, rightBound);
+        sort(arr, leftBound, mid-1);
+        sort(arr, mid+1, rightBound);
     }
 
     /**
@@ -24,8 +30,9 @@ public class QuickSort {
      * @param arr
      * @param leftBound 左边界
      * @param rightBound 右边界
+     * 返回轴的位置
      */
-    static void partition(int[] arr, int leftBound, int rightBound){
+    static int partition(int[] arr, int leftBound, int rightBound){
         //取最右侧做为轴
         int pivot = arr[rightBound];
         int left = leftBound;
@@ -37,7 +44,7 @@ public class QuickSort {
             while(left <= right && arr[left] <= pivot){
                 left++;
             }
-            while(left < right && arr[right] >= pivot){
+            while(left <= right && arr[right] > pivot){
                 right --;
             }
             if(left < right){
@@ -45,7 +52,11 @@ public class QuickSort {
                 swap(arr, left, right);
             }
         }
-        swap(arr, left, rightBound);
+        if(pivot < arr[left]){
+            swap(arr, left, rightBound);
+        }
+
+        return left;
     }
 
     static void swap(int[] arr, int i, int j){

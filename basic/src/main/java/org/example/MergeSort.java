@@ -16,9 +16,9 @@ public class MergeSort {
 
     static void sort(int[] arr){
         //1,4,7,8, 3,6,9
-//        merge(arr,0,4, arr.length);
+//        merge(arr,0,4, arr.length-1);
         // 4,7,8, 3,6
-        merge(arr,1,4, 6);
+        merge(arr,1,4, 5);
     }
 
     /**
@@ -30,7 +30,7 @@ public class MergeSort {
      */
     static void merge(int[] arr, int leftPtr, int rightPtr, int rightBound){
         int mid = arr.length / 2;
-        int[] tmp = new int[rightBound - leftPtr];
+        int[] tmp = new int[rightBound - leftPtr + 1];
         
         //前半数据的第一个位置
         int i = leftPtr;
@@ -40,7 +40,7 @@ public class MergeSort {
         int k = 0;
 
         //两个数组都没越界
-        while(i <= mid && j < rightBound){
+        while(i <= mid && j <= rightBound){
             if(arr[i] <= arr[j]){
                 tmp[k] = arr[i];
                 i++;
@@ -56,7 +56,7 @@ public class MergeSort {
         while(i <= mid) {
             tmp[k++] = arr[i++];
         }
-        while(j < rightBound){
+        while(j <= rightBound){
             tmp[k++] = arr[j++];
         }
 

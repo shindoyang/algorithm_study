@@ -29,7 +29,7 @@ public class MergeSort {
      * @param rightBound 右边界，指向数右数组的结束位置
      */
     static void merge(int[] arr, int leftPtr, int rightPtr, int rightBound){
-        int mid = arr.length / 2;
+        int mid = rightPtr -1;
         int[] tmp = new int[rightBound - leftPtr + 1];
         
         //前半数据的第一个位置

@@ -20,14 +20,27 @@ public class CountSort {
             //以原数组的值做为下标，统计相同的值重复了多少次
             count[arr[i]]++;
         }
+        print(count);
 
-        //通过j来记录结果数组的下标移动情况
-        for (int i=0, j = 0; i < count.length; i++) {
+        //通过j来记录结果数组的下标移动情况 -- 不稳定
+        /*for (int i=0, j = 0; i < count.length; i++) {
             while(count[i]-- > 0){
                 result[j++] = i;
                 print(result);
             }
+        }*/
+
+        //通过累加数组实现 -- 稳定
+        for (int i = 1; i < count.length; i++) {
+            count[i] = count[i] + count[i-1];
         }
+        print(count);
+
+        for (int i = arr.length-1; i >0 ; i--) {
+            //之所以要先--，因为累加数组的下标是个数，转换为下标时，要从0开始，故要先减1
+            result[--count[arr[i]]] = arr[i];
+        }
+
         return result;
     }
 

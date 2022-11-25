@@ -10,15 +10,29 @@ public class MergeSort {
     public static void main(String[] args) {
         //arr数组可以分为2部分，第一部分：1，4，7，8； 第二部分：3，6，9；这两部分都分别排好序，可以用归并排序合并
         int[] arr = {1,4,7,8,3,6,9};
-        sort(arr);
-//        print(arr);
+        sort(arr,0, arr.length -1);
+        print(arr);
     }
 
-    static void sort(int[] arr){
+    static void sort(int[] arr, int leftPtr, int rightBound){
         //1,4,7,8, 3,6,9
 //        merge(arr,0,4, arr.length-1);
         // 4,7,8, 3,6
-        merge(arr,1,4, 5);
+//        merge(arr,1,4, 5);
+
+        //使用归并优化
+        if(leftPtr == rightBound){return;}
+        //分成两半
+//        int mid = (leftPtr + rightBound) /2 ;
+        //优化写法，防止想加超过int最大值
+        int mid = leftPtr + (rightBound - leftPtr)/2;
+        //左边排序
+        sort(arr, leftPtr, mid);
+        //右边排序
+        sort(arr, mid +1, rightBound);
+        //调用归并左右两边
+        merge(arr, leftPtr, mid+1, rightBound);
+
     }
 
     /**
@@ -60,7 +74,10 @@ public class MergeSort {
             tmp[k++] = arr[j++];
         }
 
-        print(tmp);
+        for (int m = 0; m < tmp.length; m++) {
+            arr[leftPtr +m]  = tmp[m];
+        }
+//        print(tmp);
 
     }
 
